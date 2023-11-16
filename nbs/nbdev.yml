@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "nbdev_conda_test"
+  site-url: "https://Kekulai.github.io/nbdev_conda_test"
+  description: "minimal example of an nbdev+conda workflow"
+  repo-branch: main
+  repo-url: "https://github.com/Kekulai/nbdev_conda_test"
