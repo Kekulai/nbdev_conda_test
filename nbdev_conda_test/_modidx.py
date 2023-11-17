@@ -5,4 +5,5 @@ d = { 'settings': { 'branch': 'main',
                 'doc_host': 'https://Kekulai.github.io',
                 'git_url': 'https://github.com/Kekulai/nbdev_conda_test',
                 'lib_path': 'nbdev_conda_test'},
-  'syms': {'nbdev_conda_test.core': {'nbdev_conda_test.core.foo': ('core.html#foo', 'nbdev_conda_test/core.py')}}}
+  'syms': { 'nbdev_conda_test.core': { 'nbdev_conda_test.core.bar': ('core.html#bar', 'nbdev_conda_test/core.py'),
+                                       'nbdev_conda_test.core.foo': ('core.html#foo', 'nbdev_conda_test/core.py')}}}

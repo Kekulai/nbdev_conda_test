@@ -8,15 +8,33 @@ documentation.
 ## Install
 
 ``` sh
-pip install nbdev_conda_test
+pip install tutorial_nbdev_conda
 ```
+
+Actually use conda like the following
+
+``` bash
+conda install -c kekulai -c conda-forge -c tmap tutorial_nbdev_conda
+```
+
+## Dev
+
+``` bash
+nbdev_conda --build_args '-c conda-forge -c tmap' --upload_user kekulai
+```
+
+so far You can create a pure conda package by building a meta.yaml file
+with the env requirements defined. build it with the depednent channels
+install it with the dpeendnent channels removed test.yaml since it
+assumes pip install rather than conda. future work can revist a test CI
+using conda
 
 ## How to use
 
 Fill me in please! Don’t forget code examples:
 
 ``` python
-1+1
+bar()
 ```
 
-    2
+    NameError: name 'bar' is not defined
