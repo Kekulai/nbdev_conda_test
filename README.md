@@ -7,27 +7,82 @@ documentation.
 
 ## Install
 
-``` sh
-pip install tutorial_nbdev_conda
-```
-
 Actually use conda like the following
 
 ``` bash
-conda install -c kekulai -c conda-forge -c tmap tutorial_nbdev_conda
+conda install -c kekulai -c conda-forge -c tmap nbdev_conda_test
 ```
 
+# Conda package naming convention
+
+Conda package names are normalized and they may contain only lowercase
+alpha characters, numeric digits, underscores, hyphens, or dots
+
+# Pip package naming convention
+
+Underscores can be used in the module name if it improves readability.
+Python packages should also have short, all-lowercase names, although
+the use of underscores is discouraged. A valid name consists only of
+ASCII letters and numbers, period, underscore and hyphen. It must start
+and end with a letter or number.
+
+NB: Python can not import packages with a hyphen though!!
+
+> SO FOR SIMPLICITY, KEEP PACKAGE NAMING CONVENTION LOWERCASE,NUMERICS
+> AND UNDERSCORE IF NEEDED
+
 ## Dev
+
+NB: nbdev_conda does not work because it depends on first uploading to
+pypi and then downloading it to prep for conda build. This pypi
+dependent approach will not work for those packaging requirements that
+need other conda packages.
 
 ``` bash
 nbdev_conda --build_args '-c conda-forge -c tmap' --upload_user kekulai
 ```
 
-so far You can create a pure conda package by building a meta.yaml file
-with the env requirements defined. build it with the depednent channels
-install it with the dpeendnent channels removed test.yaml since it
-assumes pip install rather than conda. future work can revist a test CI
-using conda
+Altneraiavely, you can directly build conda from conda build and
+anaconda cli that yuou need to installed inthe base environment.
+
+1.  Populate meta.yaml
+
+    - package name
+    - github url
+    - dependent packages with custom channel name :: package convention
+
+2.  `$ nbdev_prepare`
+
+    - nbdev_export: Builds the .py modules from Jupyter notebooks
+    - nbdev_test: Tests your notebooks
+    - nbdev_clean: Cleans your notebooks to get rid of extreanous output
+      for git
+    - nbdev_readme: Updates your repo’s README.md file from your index
+      notebook.
+
+3.  Manually execute conda build, but make sure it is isntalled in base
+    as follows:
+
+    ``` bash
+    $ conda activate base
+    $ conda install anaconda-client conda-build
+    $ conda update conda  # latest updates to mamba
+    $ anaconda login # enter your anaconda credentials
+    $ cd [to your github folder]
+    $ conda build -c conda-forge -c tmap . # -c your-dependent-channels
+    ....
+    anaconda upload \
+        /anaconda/conda-bld/linux-64/nbdev_conda_test-0.0.1-py310_0.tar.bz2
+    ....
+    $ anaconda upload -u kekulai /anaconda/conda-bld/linux-64/nbdev_conda_test-0.0.1-py310_0.tar.bz2 # pass channnel as -u user
+    conda located at:
+    https://anaconda.org/kekulai/nbdev_conda_test
+    ```
+
+4.  removed test.yaml since it assumes pip install rather than conda.
+    future work can revist a test CI using conda
+
+5.  push to git
 
 ## How to use
 
@@ -37,4 +92,4 @@ Fill me in please! Don’t forget code examples:
 bar()
 ```
 
-    NameError: name 'bar' is not defined
+    hey
