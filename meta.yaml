@@ -1,0 +1,26 @@
+package:
+  name: nbdev_conda_test
+  version: 0.0.1
+
+build:
+  number: 0
+  script: python -m pip install . -vv --no-deps --no-build-isolation
+
+source:
+  path: .
+
+# maybe this does not pull from latest because i need to define git_rev
+# source:
+#   git_url: https://github.com/Kekulai/nbdev_conda_test.git
+#   git_depth: 1 # (Defaults to -1/not shallow)
+
+requirements:
+  build: 
+    - python<3.11s
+    - setuptools 
+    - pip
+    
+  run:
+    - python<3.11
+    - conda-forge::rdkit
+    - tmap::tmap
