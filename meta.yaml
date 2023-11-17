@@ -4,7 +4,7 @@ package:
 
 build:
   number: 0
-  script: python -m pip install . -vv --no-deps --no-build-isolation
+  script: "{{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
 
 source:
   path: .
@@ -15,12 +15,12 @@ source:
 #   git_depth: 1 # (Defaults to -1/not shallow)
 
 requirements:
-  build: 
-    - python<3.11s
+  host: 
+    - python <3.10.0
     - setuptools 
     - pip
     
   run:
-    - python<3.11
+    - python <3.10.0
     - conda-forge::rdkit
     - tmap::tmap
