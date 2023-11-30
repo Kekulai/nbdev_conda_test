@@ -1,3 +1,5 @@
+*.amlignore*
+
 _docs/
 _proc/
 
